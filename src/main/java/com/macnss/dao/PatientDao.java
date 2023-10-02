@@ -11,4 +11,5 @@ public interface PatientDao {
     boolean changeSociete(String matreculePatient, String matreculeEntreprise);
     String checkRetraite(String matrecule);
     void checkRetraiteCalculerPrixRetraite();
+    boolean prendreRetraite(String matrecule);
 }

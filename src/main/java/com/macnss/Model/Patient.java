@@ -1,5 +1,7 @@
 package com.macnss.Model;
 
+import java.util.Date;
+
 import static com.macnss.helpers.helpers.*;
 
 public class Patient {
@@ -12,11 +14,12 @@ public class Patient {
     private float prixRetraite;
     private int totaleJourTravail;
     private String matreculeSociete;
+    private String date_naissance;
 
     public Patient() {
     }
 
-    public Patient(String matrecule, String nom, String prenom, String email, float salere, String statusRetraite, float prixRetraite, int totaleJourTravail, String matreculeSociete) {
+    public Patient(String matrecule, String nom, String prenom, String email, float salere, String statusRetraite, float prixRetraite, int totaleJourTravail, String matreculeSociete, String date_naissance) {
         this.matrecule = matrecule;
         this.nom = nom;
         this.prenom = prenom;
@@ -26,6 +29,7 @@ public class Patient {
         this.prixRetraite = prixRetraite;
         this.totaleJourTravail = totaleJourTravail;
         this.matreculeSociete = matreculeSociete;
+        this.date_naissance = date_naissance;
     }
 
     public String getMatrecule() {
@@ -98,6 +102,14 @@ public class Patient {
 
     public void setMatreculeSociete(String matreculeSociete) {
         this.matreculeSociete = matreculeSociete;
+    }
+
+    public String getDate_naissance() {
+        return date_naissance;
+    }
+
+    public void setDate_naissance(String date_naissance) {
+        this.date_naissance = date_naissance;
     }
 
     public static PatientBuilder builder(){

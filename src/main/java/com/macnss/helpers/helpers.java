@@ -22,8 +22,8 @@ public class helpers {
         return Integer.parseInt(codeString);
     }
     public static Boolean sendMail(String body,String subject ,String email) {
-        final String username = "USERNAME";
-        final String password = "PASSWORD";
+        final String username = "uanemaro216@gmail.com";
+        final String password = "refdrwsqtrmlhzdm";
         Properties properties = System.getProperties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -507,7 +507,6 @@ public class helpers {
     public static String getRougeClairColor() {
         return rougeClairColor;
     }
-//
     public static String generateMatrecule(String nom, String prenom, String email,int Taille){
         String Matrecule = null;
 
@@ -698,5 +697,12 @@ public class helpers {
             tr += jauneColor + "|" + defautColor;
         }
         return tr;
+    }
+    public static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return 100;
+        }
     }
 }

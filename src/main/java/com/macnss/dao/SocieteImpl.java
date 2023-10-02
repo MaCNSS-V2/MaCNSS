@@ -142,7 +142,7 @@ public class SocieteImpl implements SocieteDao{
                     if (resultSet3.next()) {
                         int code = generateCode();
                         Matrecule += code;
-                        String query2 = "INSERT INTO patient (matrecule, nom_P, prenom_P, email, salere, statusRetraite, prixRetraite, matriculeSociete, totaleJourTravail) VALUES (?,?,?,?,?,?,?,?,?)";
+                        String query2 = "INSERT INTO patient (matrecule, nom_P, prenom_P, email, salere, statusRetraite, prixRetraite, matriculeSociete, totaleJourTravail, date_naissance) VALUES (?,?,?,?,?,?,?,?,?,?)";
                         try (PreparedStatement preparedStatement2 = con.prepareStatement(query2);){
                             preparedStatement2.setString(1,Matrecule);
                             preparedStatement2.setString(2,patient.getNom());
@@ -153,6 +153,7 @@ public class SocieteImpl implements SocieteDao{
                             preparedStatement2.setFloat(7,PrixRetraite);
                             preparedStatement2.setString(8,patient.getMatreculeSociete());
                             preparedStatement2.setInt(9,totaleJourTravail);
+                            preparedStatement2.setString(10,patient.getDate_naissance());
 
                             preparedStatement2.executeUpdate();
 
@@ -168,7 +169,7 @@ public class SocieteImpl implements SocieteDao{
                         }
                         return true;
                     }else {
-                        String query2 = "INSERT INTO patient (matrecule, nom_P, prenom_P, email, salere, statusRetraite, prixRetraite, matriculeSociete, totaleJourTravail) VALUES (?,?,?,?,?,?,?,?,?)";
+                        String query2 = "INSERT INTO patient (matrecule, nom_P, prenom_P, email, salere, statusRetraite, prixRetraite, matriculeSociete, totaleJourTravail, date_naissance) VALUES (?,?,?,?,?,?,?,?,?,?)";
                         try (PreparedStatement preparedStatement2 = con.prepareStatement(query2);){
                             preparedStatement2.setString(1,Matrecule);
                             preparedStatement2.setString(2,patient.getNom());
@@ -179,6 +180,7 @@ public class SocieteImpl implements SocieteDao{
                             preparedStatement2.setFloat(7,PrixRetraite);
                             preparedStatement2.setString(8,patient.getMatreculeSociete());
                             preparedStatement2.setInt(9,totaleJourTravail);
+                            preparedStatement2.setString(10,patient.getDate_naissance());
 
                             preparedStatement2.executeUpdate();
 
@@ -325,7 +327,8 @@ public class SocieteImpl implements SocieteDao{
                         resultSet.getString("statusRetraite"),
                         resultSet.getFloat("prixRetraite"),
                         resultSet.getInt("totaleJourTravail"),
-                        resultSet.getString("matriculeSociete"));
+                        resultSet.getString("matriculeSociete"),
+                        resultSet.getString("date_naissance"));
                 patients.add(patient);
             }
 

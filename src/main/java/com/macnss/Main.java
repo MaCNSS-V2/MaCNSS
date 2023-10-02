@@ -4,6 +4,7 @@ import com.macnss.Model.*;
 import com.macnss.dao.*;
 import com.macnss.helpers.*;
 
+import java.util.Date;
 import java.util.Scanner;
 import java.util.prefs.Preferences;
 
@@ -43,6 +44,8 @@ public class Main {
         String body;
         String subject;
 
+        String date_naissance;
+
         do {
             patientDao.checkRetraiteCalculerPrixRetraite();
             preferences.put("EMAIL", "null");
@@ -62,8 +65,7 @@ public class Main {
             System.out.println(createTable("", ""));
 
             System.out.print("Enterez votre choix (0-4): ");
-            choix = scanner.nextInt();
-            scanner.nextLine();
+            choix = tryParse(scanner.nextLine());
             clearConsole(28);
 
             switch (choix) {
@@ -102,8 +104,7 @@ public class Main {
                         System.out.println(createTable("", ""));
 
                         System.out.print("Enterez votre choix (0-4): ");
-                        choix = scanner.nextInt();
-                        scanner.nextLine();
+                        choix = tryParse(scanner.nextLine());
                         clearConsole(30);
 
                         switch (choix){
@@ -211,8 +212,7 @@ public class Main {
 
                     System.out.println("Le code de confirmation de confirmation est envoyer a votre adresse mail");
                     System.out.println("Entrer votre code de confirmation");
-                    codeConfirmation=scanner.nextInt();
-                    scanner.nextLine();
+                    codeConfirmation=tryParse(scanner.nextLine());
                     if (codeConfirmation == randomCode){
                         Agent agent = Agent.builder()
                                 .email(email)
@@ -246,8 +246,7 @@ public class Main {
                         System.out.println(createTable("", ""));
 
                         System.out.print("Enterez votre choix (0-5): ");
-                        choix = scanner.nextInt();
-                        scanner.nextLine();
+                        choix = tryParse(scanner.nextLine());
                         clearConsole(30);
 
                         switch (choix){
@@ -277,8 +276,7 @@ public class Main {
                                 System.out.println(createTrMedicamentConsultationMedicale("sans2"));
 
                                 System.out.println("Entrer Id de Consultation Medicale");
-                                CM=scanner.nextInt();
-                                scanner.nextLine();
+                                CM=tryParse(scanner.nextLine());
 
 
                                 System.out.println(createTrMedicamentConsultationMedicale("sans1"));
@@ -290,8 +288,7 @@ public class Main {
                                 System.out.println(createTrMedicamentConsultationMedicale("sans2"));
 
                                 System.out.println("Entrer Id de Medicament");
-                                M=scanner.nextInt();
-                                scanner.nextLine();
+                                M=tryParse(scanner.nextLine());
 
                                 float prix_retour = dossierDao.calculeDossier(M, CM);
                                 Dossier dossier = Dossier.builder()
@@ -327,8 +324,7 @@ public class Main {
                                 System.out.println(createTrDossiers("sans2"));
 
                                 System.out.println("Entrer Id de Dossier");
-                                id=scanner.nextInt();
-                                scanner.nextLine();
+                                id=tryParse(scanner.nextLine());
 
                                 System.out.println(createTrMedicamentConsultationMedicale("sans1"));
                                 System.out.println(createTrMedicamentConsultationMedicale("List des Consultations Medicales"));
@@ -339,8 +335,7 @@ public class Main {
                                 System.out.println(createTrMedicamentConsultationMedicale("sans2"));
 
                                 System.out.println("Entrer Id de Consultation Medicale");
-                                CM=scanner.nextInt();
-                                scanner.nextLine();
+                                CM=tryParse(scanner.nextLine());
 
 
                                 System.out.println(createTrMedicamentConsultationMedicale("sans1"));
@@ -352,8 +347,7 @@ public class Main {
                                 System.out.println(createTrMedicamentConsultationMedicale("sans2"));
 
                                 System.out.println("Entrer Id de Medicament");
-                                M=scanner.nextInt();
-                                scanner.nextLine();
+                                M=tryParse(scanner.nextLine());
 
                                 prix_retour = dossierDao.calculeDossier(M, CM);
                                 dossier = Dossier.builder()
@@ -388,8 +382,7 @@ public class Main {
                                 System.out.println(createTrDossiers("sans2"));
 
                                 System.out.println("Entrer Id de Dossier");
-                                id=scanner.nextInt();
-                                scanner.nextLine();
+                                id=tryParse(scanner.nextLine());
 
                                 resultat = agentDao.supprisionDossier(id);
                                 if (resultat == true){
@@ -408,8 +401,7 @@ public class Main {
                                 System.out.println(createTrDossiers("sans2"));
 
                                 System.out.print("Enterez Id de Dossier");
-                                id = scanner.nextInt();
-                                scanner.nextLine();
+                                id = tryParse(scanner.nextLine());
 
                                 System.out.println(createTable("", ""));
                                 System.out.println(createTable("comfirmer un Dossier", getRougeClairColor()));
@@ -420,8 +412,7 @@ public class Main {
                                 System.out.println(createTable("", ""));
 
                                 System.out.print("Enterez votre choix (-1,0,1): ");
-                                status = scanner.nextInt();
-                                scanner.nextLine();
+                                status = tryParse(scanner.nextLine());
 
                                 resultat = agentDao.comfirmationDossier(id,status);
                                 if (resultat == true){
@@ -468,8 +459,7 @@ public class Main {
                             System.out.println(createTable("", ""));
 
                             System.out.print("Enterez votre choix (0-3): ");
-                            choix = scanner.nextInt();
-                            scanner.nextLine();
+                            choix = tryParse(scanner.nextLine());
                             clearConsole(30);
 
                             switch (choix){
@@ -484,8 +474,7 @@ public class Main {
                                     break;
                                 case 2:
                                     System.out.println("Entrer Id de Dossier");
-                                    id=scanner.nextInt();
-                                    scanner.nextLine();
+                                    id=tryParse(scanner.nextLine());
 
                                     System.out.println(createTrDossiers("sans1"));
                                     System.out.println(createTrDossiers("List des Dossiers"));
@@ -517,8 +506,7 @@ public class Main {
                     System.out.println(createTable("", ""));
 
                     System.out.print("Enterez votre choix (0-2): ");
-                    choix = scanner.nextInt();
-                    scanner.nextLine();
+                    choix = tryParse(scanner.nextLine());
                     clearConsole(30);
                     switch (choix){
                         case 1:
@@ -555,8 +543,7 @@ public class Main {
                                 System.out.println(createTable("", ""));
 
                                 System.out.print("Enterez votre choix (0-6): ");
-                                choix = scanner.nextInt();
-                                scanner.nextLine();
+                                choix = tryParse(scanner.nextLine());
                                 clearConsole(30);
                                 switch (choix){
                                     case 1:
@@ -579,14 +566,17 @@ public class Main {
                                         prenom = scanner.nextLine();
                                         System.out.println("Entrez salere d'employe");
                                         salere = scanner.nextFloat();
-                                        System.out.println("Entrez totale des Jours de Travail d'employe");
-                                        totaleJourTravail = scanner.nextInt();
                                         scanner.nextLine();
+                                        System.out.println("Entrez totale des Jours de Travail d'employe");
+                                        totaleJourTravail = tryParse(scanner.nextLine());
+                                        System.out.println("Entrez date naissance d'employe sous la forme de " + getRougeClairColor()+ "yyyy-mm-jj" +getDefautColor());
+                                        date_naissance = scanner.nextLine();
                                         patient = Patient.builder()
                                                 .email(email)
                                                 .nom(nom)
                                                 .prenom(prenom)
                                                 .salere(salere)
+                                                .date_naissance(date_naissance)
                                                 .matreculeSociete(preferences.get("MATRECULE", "Matrecule De Societe"))
                                                 .totaleJourTravail(totaleJourTravail)
                                                 .build();
@@ -664,11 +654,9 @@ public class Main {
                                         System.out.println("Entrez matrecule d'employe: ");
                                         matrecule = scanner.nextLine();
                                         System.out.println("Entrez le nombre des jour ou employe est absant");
-                                        nombreJourAbsance = scanner.nextInt();
-                                        scanner.nextLine();
+                                        nombreJourAbsance = tryParse(scanner.nextLine());
                                         System.out.println("Entrez le nombre des jour ou employe est malade");
-                                        nombreJourMaladie = scanner.nextInt();
-                                        scanner.nextLine();
+                                        nombreJourMaladie = tryParse(scanner.nextLine());
                                         boolean Resultat = societeDao.ajouterJourTravailleEmploye(nombreJourAbsance,nombreJourMaladie,matrecule);
                                         if (Resultat == true){
                                             System.out.println("les jours sont ajoutes");
@@ -740,7 +728,7 @@ public class Main {
 
             if (choix != 0){
                 System.out.print("Voulez-vous continuer? (1 = Oui, 0 = Non): ");
-                choix = scanner.nextInt();
+                choix = tryParse(scanner.nextLine());
                 clearConsole(30);
             }
         } while (choix != 0);
